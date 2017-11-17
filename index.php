@@ -1,9 +1,14 @@
+<?php
+    ob_start();
+    session_start(); 
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Host Builders</title>
+        <title>Dream Home</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -32,9 +37,6 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
         
         <header>
             <!-- Start Top Header -->
@@ -71,9 +73,24 @@
                                 <li>
                                     <a class="page-scroll" href="#reviews">Reviews</a>
                                 </li>
+                                <?php
+                                if(!isset($_SESSION['user']) ) { 
+                                ?>
                                 <li>
-                                    <a class="page-scroll" href="#login">Login/Register</a>
-                                </li>	              			              
+                                    <a class="page-scroll" href="login.php">Login</a>
+                                </li>
+
+                                <?php  } else {
+                                ?>
+                                 <li>
+                                    <a class="" href="select.php">More</a>
+                                </li>
+                                <li>
+                                    <a class="" href="logout.php?logout"> <?php echo $_SESSION['user']; ?></a>
+                                </li>
+
+                                <?php  }  ?>
+                                         			              
                             </ul>
                         </div>
                         <!-- navbar-collapse -->
@@ -81,6 +98,8 @@
                     <!-- END: Navigation -->
                 </div>
             </div>
+
+
             <!-- End Top Header -->
             <!-- Start Bottom Header -->
             <div id="home" class="header-img">
@@ -89,7 +108,7 @@
                     <div class="row">
                         <div class="col-md-12 text-left">
                             <div class="header-bottom">
-                                <h1>Hey, we are Host Builders </h1>
+                                <h1>Hey, we are Dream House Constructions</h1>
                                 <h2 class="cd-headline clip is-full-width">
                                     <span class="cd-words-wrapper">
                                         <b class="is-visible">Limitless Creativity</b>
@@ -124,7 +143,7 @@
 				            <div class="single-about">
 				                <a class="about-icon" href="#"><i class=""></i></a>
 				                <h4>Splendid design</h4>
-				                <p>See through our awesome architechture designs that best suites your dream home.</p>
+                                <p>See through our awesome architechture designs that best suites your dream home.</p>
 				            </div>
 				        </div>
 				        <!-- end about-details -->
@@ -134,8 +153,8 @@
 				        <div class="about-details text-center">
 				            <div class="single-about">
 				                <a class="about-icon" href="#"><i class=""></i></a>
-				                <h4>HTML-CSS Development</h4>
-				                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam accusamus reiciendis asperiores debitis similique assumenda animi non id pariatur.</p>
+				                <h4>Building Renovation</h4>
+                                <p>Our project diversity and commitment to quality has allowed us to exceed client needs and expectations.  Our services include general contracting, construction management, design build and pre-construction services.</p>
 				            </div>
 				        </div>
 				        <!-- end about-details -->
@@ -144,8 +163,10 @@
 				        <div class="about-details text-center">
 				            <div class="single-about">
 				                <a class="about-icon" href="#"><i class=""></i></a>
-				                <h4>E-Commerce Development</h4>
-				                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam accusamus reiciendis asperiores debitis similique assumenda animi non id pariatur.</p>
+				                <h4>Pre-Construction Design and estimating</h4>
+                                <p>Dream House  Construction excels in providing cost-effective pre-construction
+                                 services to our clients. In doing so, we are able
+                                  to provide many types of pre-construction estimates.</p>
 				            </div>
 				        </div>
 				        <!-- end about-details -->
@@ -155,8 +176,9 @@
 				        <div class="about-details text-center">
 				            <div class="single-about">
 				                <a class="about-icon" href="#"><i class=""></i></a>
-				                <h4>CMS-Development</h4>
-				                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam accusamus reiciendis asperiores debitis similique assumenda animi non id pariatur.</p>
+				                <h4>Emergency Services</h4>
+                                <p>Dream House  Construction Company can handle your Emergency
+                                24 hours a day, 7 days a week, with an immediate, live response and quick, onsite arrival time.</p>
 				            </div>
 				        </div>
 				        <!-- end about-details -->
@@ -174,17 +196,16 @@
 				        <div class="about-self">
 				            <div class="self-head">
 				                <h4 class="intro-head">Introduction</h4>
-				                <p>Hi, there! I am Richart. Currently working as a senior Website Developer. I am always passionate about Website Development, love to create modern Website & provide great client support.</p>
+                                <p>Dream House Construction Inc. is  passionate about building your "dream home", love to create modern houses & provide great service to our customers and clients.</p>
 				            </div>
 				            <div class="self-text">
 				                <ul>
-				                    <li>Date Of Birth : 12 Jan, 1987</li>
-				                    <li>Web Developer</li>
-				                    <li>State: New york</li>
-				                    <li>Country: California</li>
-                                    <li>Languages: English</li>
+                                    <li>Dream House Construction:Since 2001</li>
+                                   <li>Expert Civil Engineers</li>
+                                    <li>Services: Around the globe</li>
+                                    <li>Country: California</li>
                                     <li>Community :Team Leading</li>
-				                </ul>
+                                </ul>
 				            </div>
 				            
 				        </div>
@@ -218,7 +239,7 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12">
 						<div class="section-head">
-						    <h3>Skills.</h3>
+						    <h3>Best-in class services</h3>
 						</div>
 					</div>
 				</div>
@@ -228,15 +249,19 @@
                         <!-- Skills Content -->
                         <div class="skills-content">
                             <div class="skills-details">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi ex blanditiis consequuntur ab odio sed totam in rerum, illum amet facere ipsam quibusdam perferendis odit,Lorem ipsum dolor sit amet, consectetur perspiciatis quaerat </p>
+                                <p>Our skilled teams take pride in guiding a project from conception to successful completion. Dream House Construction
+                                partners with clients from the very beginning to listen to their needs and develop a clear and 
+                                shared vision for a project. Then we collaborate with talented architects, engineers, and subcontractors to bring 
+                                that vision to life. This interactive approach ensures quality workmanship and attention to det
+                                ail every step of the way and a finished structure you can be proud of</p>
                             </div>
                             <div class="skills-idea">
-                                <h4 class="intro-head">Work startegy</h4>
+                               <h4 class="intro-head">Work startegy</h4>
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-lightbulb-o"></i>Idea :</a>I have an Special Idea Web Development</li>
-                                    <li><a href="#"><i class="fa fa-thumbs-o-up"></i>Approve :</a>Launched the idea for the website</li>
-                                    <li><a href="#"><i class="fa fa-pencil"></i>Brand Identify :</a>I have Web Development</li>
-                                    <li><a href="#"><i class="fa fa-line-chart"></i>Live Work : One who designs software</a> </li>
+                                    <li><a href="#"><i class="fa fa-lightbulb-o"></i>Idea </a>We have  variety of design palns for your building</li>
+                                    <li><a href="#"><i class="fa fa-thumbs-o-up"></i>Quality materials:</a>Best in class materials to withstand any calamity</li>
+                                    <li><a href="#"><i class="fa fa-pencil"></i>Best site locations:</a>Water front,sea front and much more amazing locations..</li>
+                                    <li><a href="#"><i class="fa fa-line-chart"></i>Getting done:</a>Get your dream home ready and start living.... </li>
                                 </ul>
                             </div>
                         </div>
@@ -245,7 +270,7 @@
                     <div class="col-md-6 col-sm-6">
                        <!-- Skills Progressbar -->
                        <div class="skill-progress">
-                            <h4 class="web-ex">Web Master & Support Service</h4>
+                            <h4 class="web-ex">Design rating</h4>
                             <div class="progress">
                                 <div class="progress-bar wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s " role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
                                 </div>
@@ -254,7 +279,7 @@
                         </div>
                         <!-- Skills Progressbar -->
                         <div class="skill-progress">
-                            <h4 class="web-ex">Web Design & Development</h4>
+                            <h4 class="web-ex">Service rating</h4>
                             <div class="progress">
                                 <div class="progress-bar wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s " role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
                             </div>
@@ -262,7 +287,7 @@
                         </div>
                         <!-- Skills Progressbar -->
                         <div class="skill-progress">
-                            <h4 class="web-ex">Social Marketing</h4>
+                            <h4 class="web-ex">Customer Satisfaction</h4>
                             <div class="progress">
                                 <div class="progress-bar wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s " role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
                                 </div>
@@ -270,7 +295,7 @@
                             <span class="web-per bar-3 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s">80%</span>
                         </div>
                         <div class="skill-progress">
-                            <h4 class="web-ex">Online Marketing (SEO & SEM)</h4>
+                            <h4 class="web-ex">Budget rating</h4>
                             <div class="progress">
                                 <div class="progress-bar wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s " role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
                                 </div>
@@ -279,7 +304,7 @@
                         </div>
                         <!-- Skills Progressbar -->
                         <div class="skill-progress">
-                            <h4 class="web-ex">HTML-CSS</h4>
+                            <h4 class="web-ex">Company rating</h4>
                             <div class="progress">
                                 <div class="progress-bar wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s " role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
                                 </div>
@@ -291,48 +316,50 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="skill-edu">
-                            <h4 class="intro-head">Education</h4>
+                           <h4 class="intro-head">Our Projects</h4>
                             <!-- edu-result -->
                             <div class="edu-result">
-                                <h5><span>2008</span>Master Degree</h5>
-                                <h6>  University Of Oxford</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, voluptates, reprehenderit! Tempore porro nesciunt, cupiditate quasi omnis. Quaerat.</p>
+                                <h5><span>2012</span>Construction of Oberon Hotel</h5>
+                                <h6> California</h6>
+                                <p>We have constructed the 3 star hotel at California.</p>
                             </div>
                             <!-- edu-result -->
                             <div class="edu-result">
-                                <h5><span>2006</span>Bachelor Degree</h5>
-                                 <h6> University Of California</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, voluptates, reprehenderit! Tempore porro nesciunt, cupiditate quasi omnis. Quaerat.</p>
+                                <h5><span>2006</span>Folsom Dam Project Hits High-Water Mark</h5>
+                                 <h6>California</h6>
+                                <p>Built as part of an effort to prevent overtopping of Folsom Dam and to protect Sacramento against 200-year floods, the Folsom
+                                 Dam Auxiliary Spillway project team overcame numerous
+                                 technical and logistical challenges to deliver the $318-million project.</p>
                             </div>
                             <!-- edu-result -->
                             <div class="edu-result last-result">
-                               <h5><span>2002</span> Diploma Degree</h5>
-                                <h6>  University Of Hitech</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, voluptates, reprehenderit! Tempore porro nesciunt, cupiditate quasi omnis. Quaerat.</p>
+                               <h5><span>2015</span> Kaiser Permanente San Diego Medical Center</h5>
+                                <h6>  San Diego</h6>
+                                <p>Kaiser Permanente’s San Diego Medical Center combines technology and the natural world to create a healing environment.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Start Experince -->
                     <div class="col-md-6 col-sm-6">
                         <div class="skill-edu">
-                            <h4 class="intro-head">Expereince</h4>
+                            <h4 class="intro-head">Latest Projects</h4>
                             <!-- edu-result -->
                             <div class="edu-result">
-                                <h5><span>2016</span>SEO Marketing</h5>
-                                <h6>Btrc It Consultant firm</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, voluptates, reprehenderit! Tempore porro nesciunt, cupiditate quasi omnis. Quaerat.</p>
+                                <h5><span>2016</span>Gateshead Millennium Bridge.</h5>
+                                <h6> Courtesy of Kay Williams.</h6>
+                                <p>Advanced modeling techniques, material choices and analysis methodologies adopted for building practices are not yet fully embraced within the bridge industry. </p>
                             </div>
                             <!-- edu-result -->
                             <div class="edu-result">
-                                <h5><span>2010</span> Web Developer</h5>
-                                 <h6> HashTech It Consultant</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, voluptates, reprehenderit! Tempore porro nesciunt, cupiditate quasi omnis. Quaerat.</p>
+                                <h5><span>2017</span>Egg-shaped office building in Mumbai</h5>
+                                 <h6> Blends natural shape with innovative technology</h6>
+                                <p> The new “Cybertecture Egg” has been designed as a poultry-inspired office building for Mumbai, India.</p>
                             </div>
                             <!-- edu-result -->
                             <div class="edu-result last-result">
-                               <h5><span>2005</span>Coder</h5>
+                               <h5><span>2017</span>Smart Office in Delhi</h5>
                                 <h6> Royal Computer Center</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, voluptates, reprehenderit! Tempore porro nesciunt, cupiditate quasi omnis. Quaerat.</p>
+                                <p>As IoT technology and philosophy continue to advance, smart buildings are becoming an increasingly attractive option for property investors.</p>
                             </div>
                         </div>
                     </div>
@@ -401,9 +428,9 @@
                                 <ul>
                                     <li class="filter" data-filter="all" >All Items</li>
                                     <li class="filter" data-filter=".design">Design</li>
-                                    <li class="filter" data-filter=".web">Web Design</li>
-                                    <li class="filter" data-filter=".wordpress">Wordpress</li>
-                                    <li class="filter" data-filter=".php">Php</li>
+                                    <li class="filter" data-filter=".web">Popular Designs</li>
+                                    <li class="filter" data-filter=".wordpress">Future designs</li>
+                                    <li class="filter" data-filter=".php">Our Best Designs</li>
                                 </ul>				
                             </div>
                             <div class="awesome-portfolio-content">
@@ -412,8 +439,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/1.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Simply Random</h3>
-                                            <p>Logo Design</p>
+                                            <h3>Designer home</h3>
+                                            <p></p>
                                         </div>
                                     </a>
                                 </div>
@@ -423,8 +450,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/2.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Many Variations</h3>
-                                            <p>Photoshop</p>
+                                            <h3>Spacious home</h3>
+                                            <p>New gen designs</p>
                                         </div>
                                     </a>
                                 </div>
@@ -434,8 +461,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/3.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Classical Latin</h3>
-                                            <p>Wordpress</p>
+                                            <h3>Ambient light house</h3>
+                                            <p></p>
                                         </div>
                                     </a>
                                 </div>
@@ -445,8 +472,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/4.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Lorem Ipsum</h3>
-                                            <p>Design</p>
+                                            <h3>Natural</h3>
+                                            <p>Elegant Designs</p>
                                         </div>
                                     </a>
                                 </div>
@@ -456,8 +483,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/5.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Simply Dummye</h3>
-                                            <p>Photoshop</p>
+                                            <h3>Illuminated homes</h3>
+                                            <p></p>
                                         </div>
                                     </a>
                                 </div>
@@ -467,8 +494,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/6.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Present Moment</h3>
-                                            <p>Design</p>
+                                            <h3>Simple</h3>
+                                            <p></p>
                                         </div>
                                     </a>
                                 </div>
@@ -478,8 +505,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/7.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Making This The</h3>
-                                            <p>Developer</p>
+                                            <h3>Older designs</h3>
+                                            <p></p>
                                         </div>
                                     </a>
                                 </div>
@@ -489,8 +516,8 @@
                                     <a href="#">
                                         <div class="awesome-img"><img src="img/portfolio/8.jpg" alt="" /></div>
                                         <div class="awesome-info">
-                                            <h3>Making This The</h3>
-                                            <p>Design</p>
+                                            <h3>The perfect house</h3>
+                                            <p></p>
                                         </div>
                                     </a>
                                 </div>
@@ -517,20 +544,19 @@
                                         <img src="img/testimonial/test1.jpg" alt="">
                                     </div>
                                     <div class="testi-text text-center">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                        <h4>Jammes</h4>
-                                        <span class="guest-rev">Ceo - <a href="#">Red It Center</a></span>
+                                        <p> The common question that gets asked in business is, ‘why?’ That’s a good question, but an equally valid question is, ‘why not?’</p>                            <h4>Abinand</h4>
+                                        <span class="guest-rev">CTO<a href="#"></a></span>
                                     </div>
                                 </div>
                                 <!-- End single item -->
                                 <div class="single-testi text-center">
                                     <div class="testi-img">
-                                        <img src="img/testimonial/test2.jpg" alt="">
+                                        <img src="img/testimonial/test2.jpeg" alt="">
                                     </div>
                                     <div class="testi-text text-center">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                        <h4>Jammes</h4>
-                                        <span class="guest-rev">Excutive Officer- <a href="#">Devs Items</a></span>
+                                        <p>It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you’ll do things differently. </p>
+                                        <h4>Venkitaraman</h4>
+                                        <span class="guest-rev">Executive Officer<a href="#"></a></span>
                                     </div>
                                 </div>
                                 <!-- End single item -->
@@ -539,12 +565,22 @@
                                         <img src="img/testimonial/test3.jpg" alt="">
                                     </div>
                                     <div class="testi-text text-center">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
-                                        <h4>Jammes</h4>
-                                        <span class="guest-rev">Directer-<a href="#">Hashtech</a></span>
+                                        <p>The world is changing very fast. Big will not beat small anymore. It will be the fast beating the slow.</p>
+                                        <h4>DarsiManoj</h4>
+                                        <span class="guest-rev">Director<a href="#"></a></span>
                                     </div>
                                 </div>
                                 <!-- End single item -->
+                                 <div class="single-testi text-center">
+                                    <div class="testi-img">
+                                        <img src="img/testimonial/test4.jpeg" alt="">
+                                    </div>
+                                    <div class="testi-text text-center">
+                                        <p>Lots of companies don’t succeed over time. What do they fundamentally do wrong? They usually miss the future.</p>
+                                        <h4>Yeshwant</h4>
+                                        <span class="guest-rev">CEO<a href="#"></a></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -554,169 +590,169 @@
 		<!-- End testimonials end -->
 		<!-- Start Blog Ares -->
 		<div id="blog" class="blog-area area-padding">
-		    <div class="container">
-		        <div class="row">
-		            <div class="col-md-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="section-head">
-                            <h3>Latest blog.</h3>
+                            <h3>Our Latest Designs.</h3>
                         </div>
                     </div>
-		        </div>
-		        <div class="row">
-        			<div class="blog-item">
-        				<div class="col-md-4 col-sm-4 col-xs-12">
-        					<div class="single-blog">
-        						<div class="single-blog-img">
-        							<a href="#">
-        								<img src="img/blog/blog1.jpg" alt="">
-        							    <span class="overly"></span>
-        							</a>
-        						</div>
-        						<div class="blog-content">
-									<h4><a href="#">Post my imagine Items</a></h4>
-        							<p>Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.</p>
-        						</div>
-        						<div class="blog-meta">
-        							<span class="date-type">
-        								<i class="fa fa-calendar"></i>2016-02-05 / 07:10:45
-        							</span>
-        							<span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">80 comments</a>
-									</span>
-        						</div>
-        					</div>
-        				</div>
-        				<!-- single blog -->
-        				<div class="col-md-4 col-sm-4 col-xs-12">
-        					<div class="single-blog">
-        						<div class="single-blog-img">
-        							<a href="#">
-        								<img src="img/blog/blog2.jpg" alt="">
-        							    <span class="overly"></span>
-        							</a>
-        						</div>
-        						<div class="blog-content">
-									<h4><a href="#">Discovering Client Stories</a></h4>
-        							<p>Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.</p>
-        						</div>
-        						<div class="blog-meta">
-        							<span class="date-type">
-        								<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
-        							</span>
-        							<span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">130 comments</a>
-									</span>
-        						</div>
-        					</div>
-        				</div>
-        				<!-- single blog -->
-        				<div class="col-md-4 col-sm-4 col-xs-12">
-        					<div class="single-blog">
-        						<div class="single-blog-img">
-        							<a href="#">
-        								<img src="img/blog/blog3.jpg" alt="">
-        							    <span class="overly"></span>
-        							</a>
-        						</div>
-        						<div class="blog-content">
-									<h4><a href="#">The mystery of digital experience</a></h4>
-        							<p>Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.</p>
-        						</div>
-        						<div class="blog-meta">
-        							<span class="date-type">
-        								<i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
-        							</span>
-        							<span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">30 comments</a>
-									</span>
-        						</div>
-        					</div>
-        				</div>
-        				<!-- single blog -->
-        				<div class="col-md-4 col-sm-4 col-xs-12">
-        					<div class="single-blog">
-        						<div class="single-blog-img">
-        							<a href="#">
-        								<img src="img/blog/blog4.jpg" alt="">
-        							    <span class="overly"></span>
-        							</a>
-        						</div>
-        						<div class="blog-content">
-									<h4><a href="#">Startup – Always a New Beginning</a></h4>
-        							<p>Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.</p>
-        						</div>
-        						<div class="blog-meta">
-        							<span class="date-type">
-        								<i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
-        							</span>
-        							<span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">30 comments</a>
-									</span>
-        						</div>
-        					</div>
-        				</div>
-        				<!-- single blog -->
-        				<div class="col-md-4 col-sm-4 col-xs-12">
-        					<div class="single-blog">
-        						<div class="single-blog-img">
-        							<a href="#">
-        								<img src="img/blog/blog5.jpg" alt="">
-        							    <span class="overly"></span>
-        							</a>
-        						</div>
-        						<div class="blog-content">
-									<h4><a href="#">Crafting unique designs</a></h4>
-        							<p> versions have evolved over the years, sometimes by accident, Various versions have evolved over the years, sometimes  have evolved over the years,</p>
-        						</div>
-        						<div class="blog-meta">
-        							<span class="date-type">
-        								<i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
-        							</span>
-        							<span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">30 comments</a>
-									</span>
-        						</div>
-        					</div>
-        				</div>
-        				<!-- single blog -->
-        				<div class="col-md-4 col-sm-4 col-xs-12">
-        					<div class="single-blog">
-        						<div class="single-blog-img">
-        							<a href="#">
-        								<img src="img/blog/blog6.jpg" alt="">
-        							    <span class="overly"></span>
-        							</a>
-        						</div>
-        						<div class="blog-content">
-									<h4><a href="#">Let start your creative design with Adobe</a></h4>
-        							<p> versions have evolved over the years, sometimes by accident, Various versions have evolved over the years, sometimes  have evolved over the years,</p>
-        						</div>
-        						<div class="blog-meta">
-        							<span class="date-type">
-        								<i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
-        							</span>
-        							<span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">30 comments</a>
-									</span>
-        						</div>
-        					</div>
-        				</div>
-        				<!-- single blog -->
-        			</div>
-        		</div>
-		    </div>
-		</div>
-		<!-- End Blog Ares -->
-		<!-- Start contact Area -->
-		<div id="contact" class="contact-area area-padding">
+                </div>
+                <div class="row">
+                    <div class="blog-item">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <a href="#">
+                                        <img src="img/blog/blog1.jpg" alt="">
+                                        <span class="overly"></span>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="#"></a></h4>
+                                    <p>Design</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="date-type">
+                                        <i class="fa fa-calendar"></i>2016-02-05 / 07:10:45
+                                    </span>
+                                    <span class="comments-type">
+                                        <i class="fa fa-comment-o"></i>
+                                        <a href="#">80 comments</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single blog -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <a href="#">
+                                        <img src="img/blog/blog2.jpg" alt="">
+                                        <span class="overly"></span>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="#"></a></h4>
+                                    <p>Design</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="date-type">
+                                        <i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+                                    </span>
+                                    <span class="comments-type">
+                                        <i class="fa fa-comment-o"></i>
+                                        <a href="#">130 comments</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single blog -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <a href="#">
+                                        <img src="img/blog/blog3.jpg" alt="">
+                                        <span class="overly"></span>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="#"></a></h4>
+                                    <p>Design</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="date-type">
+                                        <i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
+                                    </span>
+                                    <span class="comments-type">
+                                        <i class="fa fa-comment-o"></i>
+                                        <a href="#">30 comments</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single blog -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <a href="#">
+                                        <img src="img/blog/blog4.jpg" alt="">
+                                        <span class="overly"></span>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="#"></a></h4>
+                                    <p>Design</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="date-type">
+                                        <i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
+                                    </span>
+                                    <span class="comments-type">
+                                        <i class="fa fa-comment-o"></i>
+                                        <a href="#">30 comments</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single blog -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <a href="#">
+                                        <img src="img/blog/blog5.jpg" alt="">
+                                        <span class="overly"></span>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="#"></a></h4>
+                                    <p>Design</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="date-type">
+                                        <i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
+                                    </span>
+                                    <span class="comments-type">
+                                        <i class="fa fa-comment-o"></i>
+                                        <a href="#">30 comments</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single blog -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-blog">
+                                <div class="single-blog-img">
+                                    <a href="#">
+                                        <img src="img/blog/blog6.jpg" alt="">
+                                        <span class="overly"></span>
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h4><a href="#"></a></h4>
+                                    <p>At work</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="date-type">
+                                        <i class="fa fa-calendar"></i>2016-04-07 / 08:10:18
+                                    </span>
+                                    <span class="comments-type">
+                                        <i class="fa fa-comment-o"></i>
+                                        <a href="#">30 comments</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single blog -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Blog Ares -->
+        <!-- Start contact Area -->
+        <div id="contact" class="contact-area area-padding">
             <div class="head-overly"></div>
-		    <div class="container">
+            <div class="container">
                 <div class="row contact-inner">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <div class="Cont-content">
@@ -732,15 +768,15 @@
                                     <ul>
                                         <li>
                                             <i class="fa fa-map-marker"></i> <strong>Address</strong>
-                                             324 ready Street, New York.
+                                             Amrita School of Engineering, Amritapuri
                                         </li>
                                         <li>
                                             <i class="fa fa-mobile"></i> <strong>Phone</strong>
-                                            +880098765433
+                                            +91854754323
                                         </li>
                                         <li>
                                             <i class="fa fa-envelope"></i> <strong>Email</strong>
-                                            <a href="#">admin@usdtheme.com</a>
+                                            <a href="#">admin@dreamhouse.com</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -756,7 +792,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="contact-form">
                             <div class="Cont-content">
                                 <h4 class="intro-head">Leave a massege</h4>
@@ -781,30 +817,18 @@
                         </div>
                     </div>
                 </div>
-		    </div>
-		</div>
-		<!-- End contact Area -->
-        <!-- Start Footer bottom Area -->
-            <div class="footer-area">
-               <div class="container">
-                   <div class="row">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <div class="copyright text-center">
-                            <p>Copyright © 2016 <a href="http://freecssthemes.com/">FreeCssThemes</a>. All Rights Reserved</p>
-                          </div>
-                       </div>
-                   </div>
-               </div>
             </div>
+        </div>
+        <!-- End contact Area -->
             
-		<!-- all js here -->
-		<!-- jquery latest version -->
+        <!-- all js here -->
+        <!-- jquery latest version -->
         <script src="js/vendor/jquery-1.12.4.min.js"></script>
-		<!-- bootstrap js -->
+        <!-- bootstrap js -->
         <script src="js/bootstrap.min.js"></script>
         <!-- Google Map js -->
-		
-		<!-- owl.carousel js -->
+        
+        <!-- owl.carousel js -->
         <script src="js/owl.carousel.min.js"></script>
         <!-- easing js -->
         <script src="js/easing.js"></script>
@@ -819,10 +843,10 @@
         <!-- counter js -->
         <script src="js/jquery.counterup.min.js"></script>
         <script src="js/waypoints.js"></script>
-		<!-- plugins js -->
+        <!-- plugins js -->
         <script src="js/plugins.js"></script>
-		<!-- main js -->
+        <!-- main js -->
         <script src="js/main.js"></script>
-    </body>	
-	
-</html>			
+    </body> 
+    
+</html>         
