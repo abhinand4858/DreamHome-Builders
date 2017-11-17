@@ -1,10 +1,25 @@
 <?php
-    ob_start();
-    session_start(); 
 
-    if(!isset($_SESSION['user']) ) {
-    	header("Location: index.php");
-    }
+  session_start(); 
+  $out = "";
+
+   ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+   error_reporting(E_ALL);
+
+  if(!isset($_SESSION['user']) ) {
+      header("Location: index.php");
+  }
+
+ 
+
+  include('connect.php');
+  $dbcon = mysqli_select_db($conn,'Host Builders');
+
+  if ( !$dbcon ) {
+      die("Database Connection failed : " . mysql_error());
+  } 
+
 ?>
 
 <!DOCTYPE html>
@@ -21,82 +36,66 @@
 <body>
 <div class="form">
       
-      <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a href="#login">Log In</a></li>
-      </ul>
       
-      <div class="tab-content">
         <div id="signup">   
-          <h1>Sign Up for Free</h1>
+          <h1>Add new site</h1>
           
-          <form action="/" method="post">
-          
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                First Name<span class="req">*</span>
-              </label>
-              <input type="text" required autocomplete="off" />
-            </div>
-        
-            <div class="field-wrap">
-              <label>
-                Last Name<span class="req">*</span>
-              </label>
-              <input type="text"required autocomplete="off"/>
-            </div>
-          </div>
+          <form method="post">
+
 
           <div class="field-wrap">
             <label>
-              Email Address<span class="req">*</span>
+              Client ID<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            <input type="text" name="cid" required autocomplete="off"/>
           </div>
-          
+
+
           <div class="field-wrap">
             <label>
-              Set A Password<span class="req">*</span>
+              Site City<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="text" name="city" required autocomplete="off"/>
           </div>
+
+
+          <div class="field-wrap">
+            <label>
+              Country<span class="req">*</span>
+            </label>
+            <input type="text" name="country" required autocomplete="off"/>
+          </div>
+
+
           
-          <button type="submit" class="button button-block"/>Get Started</button>
+          <button type="submit" name="submit" class="button button-block"/>Update</button>
           
+          <?php
+                if (isset($_POST['submit'])) {
+                  $cl_id = $_POST['cid'];
+                  $s_city = $_POST['city'];
+                  $s_cou = $_POST['country'];
+                
+
+                  $res = mysqli_query($conn, "INSERT INTO site_info (client_id, site_city, site_country) VALUES ('$cl_id','$s_city', '$s_cou') ");
+                  //echo $retid." ".$retname." ".$retph." ".$retst." ".$retcou;
+
+                  if($res) {
+                    echo "<br><h2>Inserted!</h2>";
+                  }
+                    else {
+                      echo "<br>Error!";
+                    }
+                  
+                }
+
+                ?>
+           
           </form>
+          
 
         </div>
         
-        <div id="login">   
-          <h1>Welcome Back!</h1>
-          
-          <form action="/" method="post">
-          
-            <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input type="email"required autocomplete="off"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Password<span class="req">*</span>
-            </label>
-            <input type="password"required autocomplete="off"/>
-          </div>
-          
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
-          
-          <button class="button button-block"/>Log In</button>
-          
-          </form>
-
-        </div>
-        
-      </div><!-- tab-content -->
-      
 </div> <!-- /form -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 

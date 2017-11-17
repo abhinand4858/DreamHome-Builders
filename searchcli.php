@@ -1,6 +1,7 @@
 <?php
 
   session_start(); 
+  $out = "";
 
   if(!isset($_SESSION['user']) ) {
       header("Location: index.php");
@@ -16,35 +17,6 @@
   if ( !$dbcon ) {
       die("Database Connection failed : " . mysql_error());
   } 
-
-  if (isset($_POST['using-name'])) {
-    
-    $email = $_POST['cli-name'];
-    $pass = $_POST['cli-id']; 
-
-    $res = mysqli_query($conn, "SELECT * FROM Admin where email_id = '$email' AND pass ='$pass'");
-    $row = mysqli_fetch_array($res);
-
-    } else  if (isset($_POST['using-id'])) {
-    
-    $email = $_POST['cli-name'];
-    $pass = $_POST['cli-id']; 
-
-    $res = mysqli_query($conn, "SELECT * FROM Admin where email_id = '$email' AND pass ='$pass'");
-    $row = mysqli_fetch_array($res);
-
-    if ($row) {
-      session_start(); 
-      $_SESSION['user'] = $row['email_id'];
-      header("Location: index.php");
-      //die("Fail ".$row);
-    }
-    else {
-      die("Login Failed! Please enter correct username and password.");
-    }
-  } 
-  
-
 
 ?>
 
@@ -66,7 +38,6 @@
         <li class="tab active"><a href="#signup">Using name</a></li>
         <li class="tab"><a href="#login">Using ID</a></li>
       </ul>
-      
       <div class="tab-content">
         <div id="signup">   
           <h1>Search client details</h1>
@@ -77,13 +48,45 @@
             <label>
               Name<span class="req">*</span>
             </label>
-            <input type="text" required autocomplete="off" name="cli-name" />
+            <input type="text" required autocomplete="off" name="cli-name"/>
           </div>
       
           
           <button type="submit" name="using-name" class="button button-block"/>Search</button>
           
+          <table style="width:100%">
+             <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>No of houses</th>
+            </tr>
+            <?php
+                  if (isset($_POST['using-name'])) {
+          
+                    $client_name = $_POST['cli-name'];
+
+                    $res = mysqli_query($conn, "SELECT * FROM client_info where client_name like '%$client_name%'");
+                    $row_num = mysqli_num_rows($res);
+
+                    if($row_num > 0) {
+
+                      while($row = mysqli_fetch_array($res)) {
+
+                        echo "<tr><td>".$row['client_name']."</td>"."<td>".$row['client_email']."</td>"."<td>".$row['client_phone']."</td>"."<td>".$row['noof_houses']."</td></tr>";
+                      }
+                    } else {
+                      echo "<br>Not found";
+                    }
+                  }
+
+                  ?>
+            <tr>  
+        </tr>
+          </table>
+
           </form>
+          
 
         </div>
         
@@ -96,11 +99,43 @@
             <label>
               Identification Number - ID<span class="req">*</span>
             </label>
-            <input type="numeric" required autocomplete="off" name="cli-id" />
+            <input type="text" required autocomplete="off" name="cli-id" />
           </div>
       
-          
           <button type="submit" name="using-id" class="button button-block"/>Search DB</button>
+
+          <table style="width:100%">
+             <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>No of houses</th>
+            </tr>
+            <?php
+                  if (isset($_POST['using-id'])) {
+                    
+          
+                    $client_id = $_POST['cli-id'];
+
+                    $res = mysqli_query($conn, "SELECT * FROM client_info where client_id = '$client_id'");
+                    $row_num = mysqli_num_rows($res);
+
+                    if($row_num > 0) {
+
+                      while($row = mysqli_fetch_array($res)) {
+
+                        echo "<tr><td>".$row['client_name']."</td>"."<td>".$row['client_email']."</td>"."<td>".$row['client_phone']."</td>"."<td>".$row['noof_houses']."</td></tr>";
+                      }
+                    } else {
+                      echo "<br>Not found";
+                    }
+
+                  }
+
+                  ?>
+            <tr>  
+        </tr>
+          </table>
           
           </form>
 
